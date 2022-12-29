@@ -1,0 +1,315 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>votos</title>
+<link rel="icon" href="img/icono-votaciones.png">
+<link rel="stylesheet" href="css/materialize.min.css">
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="js/materialize.min.js" ></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>
+<!-- http://code.jquery.com/jquery-lates.js-->
+
+<!--- <link rel="icon" href="descarga.png" sirve para agregar el icono de la pasrte superior  -->
+
+<!--barra de navegacion anclada-->
+  <div class="navbar-fixed">
+<nav>
+    <div class="nav-wrapper #f44336 red">
+      <a href="index.html" class="brand-logo"> Votaciones </a>
+      <a href="" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down" id="manute">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="login.html">Registrarse</a></li>
+         <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Ajustes<a</li><i class="material-icons right">arrow_drop_down</i></a>
+
+  </div>
+</div>
+  <ul id="dropdown1" class="dropdown-content">
+  <li><a href="#!">preguntas frecuentes</a></li>
+  <li ><a id="close">Cerrar Sesion</a></li>
+</ul>
+</a></a></li></ul></nav></div>
+<!--barra de navegacion anclada en moviles-->
+<!--barra de navegacion desplegable para moviles-->
+
+<ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <ul class="side-nav" id="mobile-demo">
+
+<li><a href="index.html.html">Inicio</a></li>
+<li><a href="login.html">Registrarse</a></li>
+         <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Ajustes<a</li><i class="material-icons right">arrow_drop_down</i></a>
+      </ul>
+    </div>
+  </nav>
+
+
+   
+
+  <ul id="dropdown2" class="dropdown-content">
+  <li><a href="#!">preguntas frecuentes</a></li>
+  <li ><a id="close">Cerrar Sesion</a></li>
+</ul>
+</a></a></li></ul></nav></div>
+
+<!--slider-->
+  <div class="slider">
+    <ul class="slides">
+      <li>
+        <img src="img/IMG_8827.JPG" class="responsive-img">
+        <div class="caption center-align">
+          <h4>CBTIS 19</h4>
+          <h2class="light grey-text text-lighten-3">Concurso de carteles</h2>
+        </div>
+      </li>
+      <li>
+        <img src="img/IMG_8855.JPG" class="responsive-img"> 
+        <div class="caption left-align">
+          <h3>Todo Es Posible</h3>
+          <h5 class="light grey-text text-lighten-3">Cree En ti   </h5>
+        </div>
+      </li>
+      <li>
+        <img src="img/IMG_8836.JPG" class="responsive-img">
+        <div class="caption right-align">
+          <h3>Puedes Lograr TodasTus Metas</h3>
+          <h5 class="light grey-text text-lighten-3">Slo Cnfia En Ti</h5>
+        </div>
+      </li>
+      <li>
+        <img src="img/IMG_8853.JPG" class="responsive-img"> 
+          <h3>This is our big Tagline!</h3>
+          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+        </div>
+      </li>
+    </ul>
+  </div>	
+<!--<div id="con_rang"><img src=""><h3></h3></div>-->
+
+<script>
+	$(document).on('click', '#close', function(){
+		
+		$.ajax({
+			url:'php/routePersonas.php',
+			type:'POST',
+			async: false,
+			data: {action: "close"},
+			beforeSend: function(){
+				// showSpinner();
+			},
+			error: function(error){
+				console.log(error);
+			},
+			success: function(data){
+				
+				load();
+			}
+		});
+	});
+	function load() {
+		//ahax para votar
+		$.ajax({
+			url:'php/routePersonas.php',
+			type:'POST',
+			async: false,
+			data: {action: "usuario"},
+			beforeSend: function(){
+				// showSpinner();
+			},
+			error: function(error){
+				console.log(error);
+			},
+			success: function(data){
+				if (data=="") {
+					
+					$('#manute').html("<li><a href='index.html'>Inicio</a></li>"+                
+						"<li><a href='login.html'>Registrarse</a></li>"+
+						"<li><a class='dropdown-button' href='#!' data-activates='dropdown2'>Ajustes<a</li><i class='material-icons right'>arrow_drop_down</i></a>");
+					$('#mobile-demo').html("<li><a href='index.html'>Inicio</a></li>"+                
+						"<li><a href='login.html'>Registrarse</a></li>"+
+							"<li><a class='dropdown-button' href='#!' data-activates='dropdown1'>Ajustes<a</li><i class='material-icons right'>arrow_drop_down</i></a>");
+				} else {
+					
+					$('#manute').html("<li><a href='index.html'>Inicio</a></li>"+
+                 		"<li><a class='dropdown-button' href='#!' data-activates='dropdown2'>Ajustes<a</li><i class='material-icons right'>arrow_drop_down</i></a>");
+					$('#mobile-demo').html("<li><a href='index.html'>Inicio</a></li>"+                
+        				"<li><a class='dropdown-button' href='#!' data-activates='dropdown1'>Ajustes<a</li><i class='material-icons right'>arrow_drop_down</i></a>");
+				}
+			}
+		});
+
+		//ajax para el rancking
+		$.ajax({
+			url:'php/routePersonas.php',
+			type:'POST',
+			async: false,
+			data: {action: "ran"},
+			dataType:'JSON',
+			beforeSend: function(){
+				// showSpinner();
+			},
+			error: function(error){
+				console.log(error);
+			},
+			success: function(data){
+				console.log(data);
+				var sd =data.length;
+				var i=0;
+				$('#rang').html(function(){
+					$('#rang').empty();
+					for (var i = 0; i < 3; i++) {
+							var voto=(data[i][2]*100)/data[3][0];
+							console.log(voto);
+							$('#rang').append("<div id='con_rang' class='rank'>"+
+								"<img src='"+data[i][1]+"' class='img-thumbnail'>"+
+								"<div class='progress'>"+
+    								"<div class='progress-bar progress-bar-striped active' style='width:"+voto+"%'>"+
+    								"</div>"+
+								"</div>");
+						}
+				});
+			}
+		});
+	}
+	var user;
+	$(document).ready(function() {
+		
+		load();
+		darchivo();
+
+
+
+	});
+	function votar(id) {
+		$.ajax({
+			url:'php/routePersonas.php',
+			type:'POST',
+			async: false,
+			data: {info:id,action: "voto"},
+			dataType:'JSON',
+			beforeSend: function(){
+				// showSpinner();
+			},
+			error: function(error){
+				console.log(error);
+			},
+			success: function(data){
+				console.log('exito');
+				load();
+			}
+		});
+	}
+
+	function darchivo(){
+			$.ajax({
+			url:'php/routePersonas.php',
+			type:'POST',
+			async: false,
+			data: {action: "encu"},
+			dataType:'JSON',
+			beforeSend: function(){
+				// showSpinner();
+			},
+			error: function(error){
+				console.log(error);
+			},
+			success: function(data){
+				console.log(data);
+				var sd =data.length;
+				var i=0;
+				$('#obras').html(function(){
+					$('#obras').empty();
+					for (var i = 0; i < sd; i++) {
+					$('#obras').append("<div class='col-sm-5'>"+
+			      "<div class='card hoverable'>"+
+			        "<div class='card-image waves-effect waves-block waves-light'>"+
+			          "<img class='activator' src='"+data[i][2]+"'>"+
+			        "</div>"+
+			        "<div class='card-content'>"+
+			          "<span class='card-title activator grey-text text-darken-4'>"+data[i][1]+"</span>"+
+			            "<button type='button' onclick='votar("+data[i][0]+")' class='btn btn-block'>Votar</button>"+
+			        "</div>"+
+			      "</div>"+
+			    "</div>");
+
+					}
+				});
+			}
+		});
+	}
+
+</script>
+
+<!--aqui se invocan los archivos js asi como las funciones a realizar-->
+<script src="js/jquery.min.js" ></script>
+<script src="js/materialize.min.js"></script>
+<script>
+
+  $(document).ready(function(){
+    $(".button-collapse").sideNav();
+  });
+  $(document).ready(function(){
+    $('.slider').slider();
+  });  
+</script>
+<!--aqui se se le dice al script que haga la funcion deslizar el menu lateral hasta que la pagina estecargada  y que cuando deslices tambien se despliegue-->
+</script>
+</script>
+<script> 
+</script>
+<div class="row">
+
+</div>
+<!--contenedor de los carteles-->
+<div class="container-fluid">
+  <div class="row">
+  	<aside class="col-sm-2">
+		<div id="rang" ></div>
+		<style>
+			#con_rang>img{
+				width: 100%;
+			}
+		</style>
+	</aside>
+<div class="col-sm-10" id="obras">
+	
+</div>
+    
+
+  </div>
+</div>
+
+<!--Footer-->
+<footer class="page-footer  #f44336 red">
+  <div class="container ">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Footer Content</h5>
+        <p class="grey-text text-lighten-4">"Nunca consideres el estudio como una obligación, sino como una oportunidad para penetrar en el bello y maravilloso mundo del saber."Albert Einstein"</p>
+      </div>
+      <!--<div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Links</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+        </ul>
+      </div>-->
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+    © 2018Copyright TeamProg Todos los derechos reservados.
+    
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
